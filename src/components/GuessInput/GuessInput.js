@@ -6,8 +6,9 @@ function GuessInput({ addGuess }) {
   const handleSubmit = function (event) {
     event.preventDefault();
     console.log(guess);
-    addGuess(guess);
-    setGuess('');
+    if (addGuess(guess)) {
+      setGuess('');
+    }
   };
 
   return (
