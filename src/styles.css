@@ -161,6 +161,42 @@ h1 {
   outline-offset: 4px;
 }
 
+.keyboard .row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.key {
+  display: grid;
+  place-content: center;
+  aspect-ratio: 1/1;
+  font-size: 1rem;
+  border: 2px solid lightgray;
+  border-radius: 3px;
+  color: black;
+  background: lightgray;
+  margin: 0.1em;
+  width: 1.3em;
+  font-weight: bold;
+}
+
+.key.correct {
+  background: var(--color-success);
+  border-color: var(--color-success);
+  color: white;
+}
+.key.incorrect {
+  background: var(--color-gray-300);
+  border-color: var(--color-gray-300);
+  color: white;
+}
+.key.misplaced {
+  background: var(--color-warning);
+  border-color: var(--color-warning);
+  color: white;
+}
+
 .banner {
   position: fixed;
   left: 0;
