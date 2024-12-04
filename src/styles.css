@@ -221,6 +221,14 @@ h1 {
   color: white;
 }
 
+.banner button {
+  background-color: lightgray;
+  color: black;
+  border: 1px solid gray;
+  padding: 0.3em;
+  margin: 0 0.5em;
+}
+
 .visually-hidden {
   position: absolute;
   overflow: hidden;
