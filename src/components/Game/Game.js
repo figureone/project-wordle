@@ -2,6 +2,7 @@ import React from 'react';
 
 import GuessInput from '../GuessInput';
 import GuessResults from '../GuessResults';
+import Banner from '../Banner';
 
 import { sample } from '../../utils';
 import { WORDS } from '../../data';
@@ -48,19 +49,15 @@ function Game() {
       <GuessResults guesses={guesses} answer={answer} />
       <GuessInput addGuess={addGuess} status={status} />
       {status === 'won' && (
-        <div className="happy banner">
-          <p>
-            <strong>Congratulations!</strong> Got it in{' '}
-            <strong>{numGuesses} guess(es)</strong>.
-          </p>
-        </div>
+        <Banner type="happy">
+          <strong>Congratulations!</strong> Got it in{' '}
+          <strong>{numGuesses} guess(es)</strong>.
+        </Banner>
       )}
       {status === 'lost' && (
-        <div className="sad banner">
-          <p>
-            Sorry, the correct answer is <strong>{answer}</strong>.
-          </p>
-        </div>
+        <Banner type="sad">
+          Sorry, the correct answer is <strong>{answer}</strong>.
+        </Banner>
       )}
     </>
   );
