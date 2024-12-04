@@ -14,6 +14,8 @@ const answer = sample(WORDS);
 console.info({ answer });
 
 function Game() {
+  const [status, setStatus] = React.useState('playing');
+
   const [numGuesses, setNumGuesses] = React.useState(0);
 
   const [guesses, setGuesses] = React.useState(() =>
@@ -23,8 +25,13 @@ function Game() {
   );
 
   const addGuess = function (guess) {
-    if (numGuesses >= NUM_OF_GUESSES_ALLOWED) {
-      return false;
+    const newNumGuesses = numGuesses + 1;
+    setNumGuesses(newNumGuesses);
+
+    if (newNumGuesses >= NUM_OF_GUESSES_ALLOWED) {
+      setStatus('lost');
+    } else if (guess === answer) {
+      setStatus('won');
     }
 
     setGuesses((guesses) => {
@@ -33,15 +40,28 @@ function Game() {
       return newGuesses;
     });
 
-    setNumGuesses(numGuesses + 1);
-
     return true;
   };
 
   return (
     <>
       <GuessResults guesses={guesses} answer={answer} />
-      <GuessInput addGuess={addGuess} />
+      <GuessInput addGuess={addGuess} status={status} />
+      {status === 'won' && (
+        <div className="happy banner">
+          <p>
+            <strong>Congratulations!</strong> Got it in{' '}
+            <strong>{numGuesses} guess(es)</strong>.
+          </p>
+        </div>
+      )}
+      {status === 'lost' && (
+        <div className="sad banner">
+          <p>
+            Sorry, the correct answer is <strong>{answer}</strong>.
+          </p>
+        </div>
+      )}
     </>
   );
 }

@@ -3,7 +3,6 @@ import React from 'react';
 import Guess from '../Guess';
 
 function GuessResults({ guesses, answer }) {
-  console.log(guesses);
   return (
     <div className="guess-results">
       {guesses.map((guess, index) => (

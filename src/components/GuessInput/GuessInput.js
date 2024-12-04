@@ -1,14 +1,13 @@
 import React from 'react';
 
-function GuessInput({ addGuess }) {
+function GuessInput({ addGuess, status }) {
   const [guess, setGuess] = React.useState('');
 
   const handleSubmit = function (event) {
     event.preventDefault();
     console.log(guess);
-    if (addGuess(guess)) {
-      setGuess('');
-    }
+    addGuess(guess);
+    setGuess('');
   };
 
   return (
@@ -19,6 +18,7 @@ function GuessInput({ addGuess }) {
         type="text"
         pattern="[A-Z]{5}"
         value={guess}
+        disabled={status === 'won' || status === 'lost'}
         onChange={(event) => setGuess(event.target.value.toUpperCase())}
       />
     </form>
